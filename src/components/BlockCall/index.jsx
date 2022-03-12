@@ -16,13 +16,13 @@ export const BlockCall = () => {
             <span className="inline-block text-transparent bg-clip-text background-gradient-pink">right now!</span>
           </p>
           <p className="text-base 2xl:text-xl font-medium text-gray-400 mx-auto mt-4 leading-6">
-            The best way to send a coldchain package with <br /> tracking and fully secured!
+            The best way to send a cold chain package with <br /> tracking and fully secured!
           </p>
           <button
             onClick={() => navigate(routes.Shipment)}
             className="mx-auto w-[214px] h-[53px] mt-[34px] rounded-[10px] bg-blue-300 hover:bg-blue-400 transform active:scale-95 duration-100"
           >
-            <p className="text-xl font-bold">Send a packadge</p>
+            <p className="text-xl font-bold">Send a package</p>
           </button>
         </div>
 
