@@ -11,6 +11,7 @@
 # production
 /build
 /NCD.L1.sample--cold-chain-delivery
+/cold-chain-new
 
 # misc
 .DS_Store

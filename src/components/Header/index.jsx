@@ -1,13 +1,21 @@
 import React from 'react';
+import { useStore } from '../../store';
 import { Link } from 'react-router-dom';
-import { signIn } from '../../services/near';
 import { HashLink } from 'react-router-hash-link';
+import { signIn, signOut } from '../../services/near';
 import { hashRoutes, routes } from '../../router/routes';
+import { ReactComponent as LogoutSvg } from '../../assets/svg/logout.svg';
 import { ReactComponent as NearLogoTextSvg } from '../../assets/svg/nearLogoText.svg';
 
 export const Header = () => {
+  const { accountId, setAccountId } = useStore();
   const handleSignIn = () => {
-    signIn(window.location.origin + routes.Dashboard);
+    signIn(window.location.origin + routes.Shipment);
+  };
+
+  const handleSignOut = () => {
+    signOut();
+    setAccountId(null);
   };
 
   return (
@@ -17,7 +25,7 @@ export const Header = () => {
           <div className="w-[25px] h-[35px] md:w-[31px] md:h-[42px] xl:w-[40px] xl:h-[55px]">
             <NearLogoTextSvg />
           </div>
-          <div className="w-[2px] h-[35px] md:h-[42px] xl:w-[3px] xl:h-[55px] bg-green-400 mx-[11px] md:mx-[14px] xl:mx-[18px] rounded-full"></div>
+          <div className="w-[2px] h-[35px] md:h-[42px] xl:w-[3px] xl:h-[55px] bg-green-400 mx-[11px] md:mx-[14px] xl:mx-[18px] rounded-full" />
           <div>
             <p className="md:text-[22px] md:leading-[28px] xl:text-3xl font-semibold">cold chain</p>
             <p className="md:text-[13px] xl:text-xl text-gray-400 md:tracking-[8px] xl:tracking-[10px]">delivery</p>
@@ -39,15 +47,30 @@ export const Header = () => {
           </HashLink>
         </ul>
 
-        <button
-          onClick={handleSignIn}
-          className="flex items-center justify-center w-[165px] md:w-[217px] h-[40px] md:h-[53px] bg-blue-300 hover:bg-blue-400 rounded-[10px] transform active:scale-95 duration-100"
-        >
-          <p className="text-sm md:text-lg font-bold">Login with</p>
-          <div className="ml-3 w-[15px] h-[23px] md:w-[22px] md:h-[31px]">
-            <NearLogoTextSvg />
+        {accountId ? (
+          <div className="flex flex-col items-center justify-center w-[165px] md:w-[217px] h-[40px] md:h-[53px] bg-blue-300 rounded-[10px]">
+            {accountId}
+            <button
+              onClick={handleSignOut}
+              className="flex items-center font-bold text-sm text-white hover:bg-blue-400 rounded-[2px] transform active:scale-95 duration-100"
+            >
+              <span className="mr-1">
+                <LogoutSvg />
+              </span>
+              Logout
+            </button>
           </div>
-        </button>
+        ) : (
+          <button
+            onClick={handleSignIn}
+            className="flex items-center justify-center w-[165px] md:w-[217px] h-[40px] md:h-[53px] bg-blue-300 hover:bg-blue-400 rounded-[10px] transform active:scale-95 duration-100"
+          >
+            <p className="text-sm md:text-lg font-bold">Login with</p>
+            <div className="ml-3 w-[15px] h-[23px] md:w-[22px] md:h-[31px]">
+              <NearLogoTextSvg />
+            </div>
+          </button>
+        )}
       </div>
     </nav>
   );

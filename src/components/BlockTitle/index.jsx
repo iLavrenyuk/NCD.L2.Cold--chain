@@ -1,4 +1,7 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+import { HashLink } from 'react-router-hash-link';
+import { hashRoutes, routes } from '../../router/routes';
 
 export const BlockTitle = () => {
   return (
@@ -13,15 +16,19 @@ export const BlockTitle = () => {
           </p>
 
           <div className="mt-[34px] flex-col md:flex md:flex-row items-center justify-center lg:justify-start">
-            <button className="w-[214px] h-[53px] rounded-[10px] bg-blue-300 hover:bg-blue-400 transform active:scale-95 duration-100">
-              <p className="text-lg font-bold">Send a packadge</p>
-            </button>
-            <a
-              href="#about"
+            <Link
+              to={routes.Shipment}
+              className="flex justify-center items-center w-[214px] h-[53px] rounded-[10px] bg-blue-300 hover:bg-blue-400 transform active:scale-95 duration-100 text-lg font-bold"
+            >
+              Send a package
+            </Link>
+            <HashLink
+              smooth
+              to={hashRoutes.About}
               className="mt-4 md:mt-0 md:ml-10 block text-lg font-bold text-green-400 hover:text-green-500"
             >
               Learn more
-            </a>
+            </HashLink>
           </div>
         </div>
       </div>
