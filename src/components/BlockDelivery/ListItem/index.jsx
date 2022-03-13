@@ -19,10 +19,11 @@ export const ListItem = ({ isActive, name, step, temp }) => {
   return (
     <div
       href="#"
-      className="flex items-center justify-between w-full h-[110px] px-[14px] 2xl:px-6 border-b-2 border-gray-200 hover:bg-blue-50"
+      className={`flex items-center justify-between w-full h-[110px] px-[14px] 2xl:px-6 border-b-2 border-gray-200 ${
+        isActive ? 'bg-blue-50' : ''
+      } hover:bg-blue-50`}
     >
       <div className="flex items-center">
-        {/* Box image */}
         <div
           className={`flex items-center justify-center w-[73px] h-[73px] rounded-full border-2 border-gray-200 ${
             isActive ? 'background-gradient-orange' : ''
@@ -30,7 +31,6 @@ export const ListItem = ({ isActive, name, step, temp }) => {
         >
           <img src={require('../../../assets/img/Opened-box.png')} alt="" className="w-[52px] h-[42px]" />
         </div>
-        {/* Name & Location */}
         <div className="ml-[9px] 2xl:ml-[17px]">
           <p className="text-base 2xl:text-lg font-bold">Package name</p>
           <p className={`text-base 2xl:text-lg font-bold mt-0.5 ${stepColor(step)}`}>{name}</p>

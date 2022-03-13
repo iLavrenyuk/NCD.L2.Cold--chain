@@ -1,10 +1,14 @@
 import React from 'react';
 
-export const MapItems = () => {
+export const MapItems = ({ isDarkTheme }) => {
+  const pathMapTheme = isDarkTheme
+    ? require('../../../assets/img/dots-dark.png')
+    : require('../../../assets/img/dots.png');
+
   return (
     <>
       <div className="relative mx-auto w-[610px] h-[320px] lg:w-[731px] lg:h-[408px] xl:w-[610px] xl:h-[340px] 2xl:w-[731px] 2xl:h-[408px]">
-        <img src={require('../../../assets/img/dots.png')} alt="" />
+        <img src={pathMapTheme} alt="" />
 
         <img
           src={require('../../../assets/img/LA.png')}

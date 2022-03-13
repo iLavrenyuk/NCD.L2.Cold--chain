@@ -4,13 +4,13 @@ import { ListItem } from './ListItem';
 import { PackageInfo } from './PackageInfo';
 import { ReactComponent as ReverseArrowSvg } from '../../assets/svg/reverseArrow.svg';
 
-export const BlockDelivery = () => {
+export const BlockDelivery = ({ isDarkTheme }) => {
   return (
-    <section className="bg-gray-100 pt-[42px] md:pt-[31px] xl:[pt-46px] 2xl:pt-[67px]">
+    <section className="dark:bg-gray-700 dark:text-white bg-gray-100 pt-[42px] md:pt-[31px] xl:[pt-46px] 2xl:pt-[67px]">
       <div className="container mx-auto px-[10px] md:pl-[30px] md:pr-[44px] lg:pl-[30px] lg:pr-[31px] xl:pl-[77px] xl:pr-[76px] 2xl:px-[80px]">
         <div className="flex flex-wrap xl:justify-between md:px-[13px] lg:pl-[66px] lg:pr-[79px] xl:pl-[18px] xl:pr-[55px] 2xl:pl-[17px] 2xl:pr-[56px]">
           <div className="mx-auto xl:mx-0 w-[349px] h-[511px] md:w-[682px] lg:w-[818px] lg:h-[613px] xl:w-[682px] xl:h-[511px] 2xl:w-[818px] 2xl:h-[613px] pt-[30px] border-2 border-gray-200 rounded-[20px] overflow-x-scroll md:overflow-auto">
-            <MapItems />
+            <MapItems isDarkTheme={isDarkTheme} />
           </div>
 
           <div className="no-scrollbar mx-auto md:mx-0 mt-[60px] xl:mt-0 w-[349px] 2xl:w-[449px] h-[511px] 2xl:h-[613px] border-2 border-gray-200 rounded-[20px] overflow-hidden">

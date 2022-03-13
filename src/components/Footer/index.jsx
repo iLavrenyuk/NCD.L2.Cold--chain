@@ -3,9 +3,9 @@ import { ReactComponent as NearLogoTextSvg } from '../../assets/svg/nearLogoText
 
 export const Footer = () => {
   return (
-    <footer className="relative bg-gray-100 pt-[63px] md:pt-[150px] pb-[46px]">
+    <footer className="relative bg-gray-100 dark:bg-gray-700 pt-[63px] md:pt-[150px] pb-[46px] dark:text-white">
       <div className="container mx-auto px-[10px] md:px-[30px] lg:pl-[31px] lg:pr-[30px] xl:pl-[77px] xl:pr-[76px] 2xl:px-20">
-        <div className="bg-white md:px-[38px] lg:px-[65px] pt-[31px] pb-[25px] rounded-[20px]">
+        <div className="bg-white dark:bg-gray-900 md:px-[38px] lg:px-[65px] pt-[31px] pb-[25px] rounded-[20px]">
           <div className="flex-col md:flex md:flex-row pl-[14px] md:pl-0 space-y-[24px] md:space-y-0">
             <div>
               <a href="#" className="flex items-center">
