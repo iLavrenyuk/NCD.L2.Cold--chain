@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 import { useStore } from '../../store';
 import { Link } from 'react-router-dom';
-import { AccountName } from './AccountName';
-import { signIn } from '../../services/near';
 import { HashLink } from 'react-router-hash-link';
+import { signIn, signOut } from '../../services/near';
 import { hashRoutes, routes } from '../../router/routes';
+import { ReactComponent as LogoutSvg } from '../../assets/svg/logout.svg';
 import { ReactComponent as NearLogoTextSvg } from '../../assets/svg/nearLogoText.svg';
 
 export const Header = () => {
-  const { accountId } = useStore();
+  const { accountId, setAccountId } = useStore();
 
   const [isOpenForm, setIsOpenForm] = useState(false);
 
@@ -16,15 +16,14 @@ export const Header = () => {
     signIn(window.location.origin + routes.Shipment);
   };
 
+  const handleSignOut = () => {
+    signOut();
+    setAccountId(null);
+  };
+
   return (
     <header className="relative w-full bg-gray-100">
       <div className="container mx-auto px-[10px] md:px-[30px] lg:pl-[31px] lg:pr-[30px] xl:pl-[77px] xl:pr-[76px] 2xl:px-20 pt-12">
-        {accountId ? (
-          <div className="flex md:hidden items-center justify-center space-x-[10px]">
-            <AccountName />
-          </div>
-        ) : null}
-
         <nav className="w-full rounded-large bg-white">
           <div className="flex h-[65px] md:h-[77px] lg:h-[95px] 2xl:h-28 px-[10px] md:px-10 items-center justify-between">
             <Link to={routes.Home} className="flex items-center">
@@ -40,8 +39,10 @@ export const Header = () => {
 
             {accountId ? (
               <div className="flex items-center">
-                <div className="hidden md:flex items-center justify-center space-x-[10px] ml-12">
-                  <AccountName />
+                <div className="absolute md:relative flex items-center justify-center space-x-[10px] ml-12 bottom-[70px] right-[35%] md:bottom-0 md:right-0">
+                  <div className="w-3 h-3 bg-green-400 rounded-full" />
+                  <p className="text-lg font-bold">{accountId}</p>
+                  <LogoutSvg onClick={handleSignOut} className="md cursor-pointer" />
                 </div>
                 <button
                   onClick={() => setIsOpenForm(true)}
