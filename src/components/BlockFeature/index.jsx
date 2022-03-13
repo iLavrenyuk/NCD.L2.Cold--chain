@@ -36,7 +36,7 @@ export const BlockFeature = () => {
           </div>
           <div className="mt-[34px] md:mt-[64px] xl:mt-0 w-[242px] h-[280px] 2xl:w-[270px] 2xl:h-[312px] bg-red-300 rounded-[20px] pt-[26px] 2xl:pt-[30px] lg:pr-[39px] 2xl:pr-[40px] pb-[44px] 2xl:pb-[50px] pl-[26px] 2xl:pl-[33px]">
             <Feature3Svg />
-            <p className="text-[25px] 2xl:text-[28px] font-bold mt-4">Temp-contoll</p>
+            <p className="text-[25px] 2xl:text-[28px] font-bold mt-4">Temp-control</p>
             <p className="text-base 2xl:text-lg font-semibold text-white w-[197px]">
               We give a 100% return if your package will deliver in other temperature
             </p>
@@ -45,7 +45,7 @@ export const BlockFeature = () => {
             <Feature4Svg />
             <p className="text-[25px] 2xl:text-[28px] font-bold mt-4">Tracking</p>
             <p className="text-base 2xl:text-lg font-semibold text-white w-[197px]">
-              You can track all packages from this webapplication
+              You can track all packages from this web application
             </p>
           </div>
         </div>
