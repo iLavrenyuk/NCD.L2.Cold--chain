@@ -45,7 +45,7 @@ export const PackageInfo = () => {
 
           {/* Normal button */}
           <button className="mt-[26px] w-[217px] h-[53px] rounded-[10px] bg-blue-300 hover:bg-blue-400 transform active:scale-95 duration-100">
-            <p className="text-lg font-bold text-dark">Get withdraw</p>
+            <p className="text-lg font-bold text-dark dark:text-black">Get withdraw</p>
           </button>
           {/*  */}
           {/* Details */}

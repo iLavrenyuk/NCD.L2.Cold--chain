@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useStore } from '../../store';
 import { Link } from 'react-router-dom';
 import { HashLink } from 'react-router-hash-link';
@@ -7,10 +7,8 @@ import { hashRoutes, routes } from '../../router/routes';
 import { ReactComponent as LogoutSvg } from '../../assets/svg/logout.svg';
 import { ReactComponent as NearLogoTextSvg } from '../../assets/svg/nearLogoText.svg';
 
-export const Header = () => {
+export const Header = ({ isOpenForm, setIsOpenForm }) => {
   const { accountId, setAccountId } = useStore();
-
-  const [isOpenForm, setIsOpenForm] = useState(false);
 
   const handleSignIn = () => {
     signIn(window.location.origin + routes.Shipment);

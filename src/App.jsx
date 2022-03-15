@@ -1,3 +1,4 @@
+import './App.css';
 import React from 'react';
 import { Buffer } from 'buffer';
 import { StoreProvider } from './store';

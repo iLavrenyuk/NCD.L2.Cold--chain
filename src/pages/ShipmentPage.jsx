@@ -1,6 +1,12 @@
 import React from 'react';
 import { BlockDelivery } from '../components/BlockDelivery';
+import { TitleDelivery } from '../components/TitleDelivery';
 
 export const ShipmentPage = () => {
-  return <BlockDelivery isDarkTheme />;
+  return (
+    <>
+      <TitleDelivery isDarkTheme />
+      <BlockDelivery isDarkTheme />
+    </>
+  );
 };

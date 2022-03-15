@@ -1,4 +1,6 @@
 import React from 'react';
+import { useLocation } from 'react-router-dom';
+import { routes } from '../../../router/routes';
 
 export const ListItem = ({ isActive, name, step, temp }) => {
   const stepColor = (value) => {
@@ -16,20 +18,27 @@ export const ListItem = ({ isActive, name, step, temp }) => {
         return 'text-red-300';
     }
   };
+
+  const location = useLocation();
+  const boxImage =
+    location.pathname === routes.Shipment
+      ? require('../../../assets/img/Close-box-no-shadow.png')
+      : require('../../../assets/img/Opened-box.png');
+
   return (
     <div
       href="#"
-      className={`flex items-center justify-between w-full h-[110px] px-[14px] 2xl:px-6 border-b-2 border-gray-200 ${
+      className={`flex items-center justify-between w-full h-[110px] px-[14px] 2xl:px-6 border-b-2 border-gray-200 dark:border-gray-600 ${
         isActive ? 'bg-blue-50' : ''
-      } hover:bg-blue-50`}
+      } dark:bg-opacity-10 hover:bg-blue-50 dark:hover:bg-opacity-10 cursor-pointer`}
     >
       <div className="flex items-center">
         <div
-          className={`flex items-center justify-center w-[73px] h-[73px] rounded-full border-2 border-gray-200 ${
+          className={`flex items-center justify-center w-[73px] h-[73px] rounded-full border-2 border-gray-200 dark:border-gray-600 ${
             isActive ? 'background-gradient-orange' : ''
           }`}
         >
-          <img src={require('../../../assets/img/Opened-box.png')} alt="" className="w-[52px] h-[42px]" />
+          <img src={boxImage} alt="" className="w-[52px] dark:w-[42px] h-[42px]" />
         </div>
         <div className="ml-[9px] 2xl:ml-[17px]">
           <p className="text-base 2xl:text-lg font-bold">Package name</p>

@@ -21,13 +21,38 @@ module.exports = {
         blue: {
           300: '#9CD5FF',
           400: '#88C5F1',
+          500: '#4B4AEF',
         },
         red: {
           300: '#EB9B8F',
         },
+        transparent: 'transparent',
+        current: 'currentColor',
+        purple: {
+          500: '#FF66F0',
+          800: '#5200FF',
+        },
+        orange: {
+          500: '#F84E29',
+        },
       },
       borderRadius: {
         large: '20px',
+      },
+      width: {
+        50: '50px',
+        61: '60px',
+        65: '64px',
+        376: '376px',
+      },
+      height: {
+        30: '30px',
+        50: '50px',
+        65: '64px',
+        140: '140px',
+      },
+      maxHeight: {
+        22: '5.5rem',
       },
     },
   },
