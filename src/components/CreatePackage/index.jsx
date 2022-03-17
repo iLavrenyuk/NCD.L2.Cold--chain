@@ -1,9 +1,33 @@
 import React from 'react';
+import { FormInput } from './FormInput';
+import { useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { sendPackageSchema } from '../../constants/validatePackage';
 import { ReactComponent as CrossSvg } from '../../assets/svg/cross.svg';
-import { ReactComponent as ErrorSvg } from '../../assets/svg/error.svg';
 import { ReactComponent as NearLogoTextSvg } from '../../assets/svg/nearLogoText.svg';
 
+const defaultValues = {
+  packageName: '',
+  temp_c: '',
+  payment_account_id: '',
+  description: '',
+};
+
 export const CreatePackage = ({ setIsOpenForm }) => {
+  const {
+    formState: { errors },
+    register,
+    handleSubmit,
+  } = useForm({
+    defaultValues,
+    resolver: yupResolver(sendPackageSchema),
+    mode: 'onBlur',
+  });
+
+  const onSubmit = (data) => {
+    console.log(data);
+  };
+
   return (
     <div
       onClick={(e) => e.target === e.currentTarget && setIsOpenForm(false)}
@@ -34,91 +58,39 @@ export const CreatePackage = ({ setIsOpenForm }) => {
           className="w-[138px] h-[127px] mx-auto mt-[31px]"
         />
 
-        <form className="w-[328px] md:w-[397px] mx-auto mt-[30px] md:mt-[18px]">
+        <form onSubmit={handleSubmit(onSubmit)} className="w-[328px] md:w-[397px] mx-auto mt-[30px] md:mt-[18px]">
           <div className="flex justify-between">
-            <div>
-              <p className="text-xs font-semibold">Package name</p>
-              <input
-                type="text"
-                placeholder="Example name"
-                className={`mt-2 h-10 w-[195px] md:w-[260px] rounded-[10px] pl-2 md:pl-4 ${
-                  1 == Number ? 'border-red-400' : 'border-gray-200'
-                } outline-none border text-sm placeholder-gray-300 focus:border-blue-400`}
-              />
-
-              <div className="flex mt-2">
-                <ErrorSvg />
-                <p className="text-xs text-gray-400 ml-2">Name must be less than 20 characters</p>
-              </div>
-              <div className="flex mt-2">
-                <ErrorSvg />
-                <p className="text-xs text-gray-400 ml-2">This field is required</p>
-              </div>
-            </div>
-
-            <div>
-              <p className="text-xs font-semibold">Set temperature</p>
-
-              <input
-                type="text"
-                placeholder="0℃"
-                className={`mt-2 h-10 w-[125px] rounded-[10px] pl-2 md:pl-4 outline-none border ${
-                  1 == Number ? 'border-red-400' : 'border-gray-200'
-                } text-sm placeholder-gray-300 focus:border-blue-400`}
-              />
-
-              <div className="flex mt-2">
-                <ErrorSvg />
-                <p className="text-xs text-gray-400 ml-3">
-                  We work from <br /> -80℃ to 200℃
-                </p>
-              </div>
-              <div className="flex mt-2">
-                <ErrorSvg />
-                <p className="text-xs text-gray-400 ml-3">
-                  This field is <br /> required
-                </p>
-              </div>
-            </div>
+            <FormInput
+              label="Package name"
+              id="packageName"
+              errorMessage={errors?.['packageName']?.message}
+              register={register}
+              width="[195px]"
+              widthMD="[260px]"
+            />
+            <FormInput
+              label="Set temperature ℃"
+              id="temp_c"
+              errorMessage={errors?.['temp_c']?.message}
+              register={register}
+              width="[125px]"
+            />
           </div>
 
           <div className="mt-4">
-            <p className="text-xs font-semibold">Go to</p>
-            <input
-              type="text"
-              placeholder="Example.near"
-              className="mt-2 h-10 w-full rounded-[10px] pl-2 md:pl-4 outline-none border border-gray-200 text-sm placeholder-gray-300 focus:border-blue-400"
+            <FormInput
+              label="Go to"
+              id="payment_account_id"
+              errorMessage={errors?.['payment_account_id']?.message}
+              register={register}
+              width="full"
             />
-            <input
-              type="text"
-              placeholder="Example.near"
-              className="mt-2 h-10 w-full rounded-[10px] pl-2 md:pl-4 outline-none border border-yellow-400 text-sm placeholder-gray-300 "
-            />
-            <input
-              type="text"
-              placeholder="Example.near"
-              className="mt-2 h-10 w-full rounded-[10px] pl-2 md:pl-4 outline-none border border-green-300 text-sm placeholder-gray-300 "
-            />
-            <div className="flex mt-2">
-              <ErrorSvg />
-              <p className="text-xs text-gray-400 ml-2">We can find this ID, package for your risk</p>
-            </div>
-            <div className="flex mt-2">
-              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
-                <path
-                  d="M7.00004 0.333374C3.32004 0.333374 0.333374 3.32004 0.333374 7.00004C0.333374 10.68 3.32004 13.6667 7.00004 13.6667C10.68 13.6667 13.6667 10.68 13.6667 7.00004C13.6667 3.32004 10.68 0.333374 7.00004 0.333374ZM5.66671 10.3334L2.33337 7.00004L3.27337 6.06004L5.66671 8.44671L10.7267 3.38671L11.6667 4.33337L5.66671 10.3334Z"
-                  fill="#3CC13B"
-                />
-              </svg>
-              <p className="text-xs text-gray-400 ml-2">Correct ID</p>
-            </div>
           </div>
 
           <div className="mt-4">
             <p className="text-xs font-semibold">Set a details</p>
             <textarea
-              name=""
-              id=""
+              {...register('description')}
               cols="30"
               rows="10"
               placeholder="Example info"
@@ -138,7 +110,10 @@ export const CreatePackage = ({ setIsOpenForm }) => {
             </p>
           </div>
 
-          <button className="w-[214px] h-[53px] mt-4 md:mt-[35px] mx-auto rounded-[10px] bg-blue-300 hover:bg-blue-400 flex items-center justify-center transform active:scale-95 duration-100">
+          <button
+            type="submit"
+            className="w-[214px] h-[53px] mt-4 md:mt-[35px] mx-auto rounded-[10px] bg-blue-300 hover:bg-blue-400 flex items-center justify-center transform active:scale-95 duration-100"
+          >
             <div className="text-lg font-bold">Send a package</div>
           </button>
         </form>
